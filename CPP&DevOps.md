@@ -28,13 +28,14 @@
   - `git init`
 - `clone`: copy remote repo in the directory
   - `git clone <link>`
-- `add`, `rm`: staging management
+- `add`, `rm`, `mv`: staging management
   - `git add <filename>` 
   - `git rm --cached`
 - `commit`: apply changes
   - `git commit --amend`
-- `reset`: return to commit
+- `reset`: return to commit / remove file from staging
   - `git reset <commit_hash> --hard`
+  - `git reset <filename>`
 - `stash`: hide changes
   - `git stash apply <stash@{1}>`: return hidden changes
 - `merge`: merge branch to master(main)
