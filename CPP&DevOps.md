@@ -1,6 +1,7 @@
 # Doxygen
 
-
+- `doxygen -g <path>`: generate Doxyfile with the specified path
+- `doxygen <path2Doxyfile>`: generate web from the specified Doxyfile
 
 # Git
 
@@ -28,14 +29,14 @@
   - `git init`
 - `clone`: copy remote repo in the directory
   - `git clone <link>`
-- `add`, `rm`, `mv`: staging management
-  - `git add <filename>` 
+- `add`, `rm`: staging management
+  - `git add <filename>`
+  - `git add -p <filename>`
   - `git rm --cached`
 - `commit`: apply changes
   - `git commit --amend`
-- `reset`: return to commit / remove file from staging
+- `reset`: return to commit
   - `git reset <commit_hash> --hard`
-  - `git reset <filename>`
 - `stash`: hide changes
   - `git stash apply <stash@{1}>`: return hidden changes
 - `merge`: merge branch to master(main)
@@ -58,6 +59,7 @@
 - `.gitignore`: file with names of files and dirs will be ignored
 - `git checkout --orphan`: create independent branch
 - `git cherry-pick`: copy last commit (without merging)
+- `git bisect [run <script>] [bad] [good]`: bugs searching
 - **Git Hooks** - commits forbidding
   - `.git/hooks/pre-commit`
 
