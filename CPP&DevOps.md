@@ -8,6 +8,11 @@
 - `.ssh/config`
 - public (`.pub`) and private keys
 - `ssh-keygen`, `ssh`
+- GitHub SSH key:
+   - `ssh-keygen -t ed25519 -C "your.address@mail.com"`
+   - add `.ssh\your_key_name.pub` to GitHub
+   - Your GitHub page -> Settings -> SSH and GPG keys
+   - key access only works on the machine that generated it!
 
 
 # Git
