@@ -35,7 +35,7 @@
 - `checkout`: change branch
 - `init`: create `.git` file
   - `git init`
-- `clone`: copy remote repo in the directory
+- `clone`: copy remote repo to the directory
   - `git clone <link>`
 - `add`, `rm`: staging management
   - `git add <filename>`
@@ -85,7 +85,7 @@ style-check:
 - 
 ```
 - GitLab Runner
-- GitGub Actions
+- GitHub Actions
 - Travis CI (-> GitHub)
 
 
@@ -117,11 +117,8 @@ make
 ```cmake
 cmake_minimum_required(VERSION 3.16)
 project(Main)
-
 set(CMAKE_CXX_STANDARD 20)
-
 set(SOURCE main.cpp)
-
 add_executable(${PROJECT_NAME} ${SOURCE})
 ```
 
