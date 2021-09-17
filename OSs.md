@@ -76,3 +76,56 @@ whereis gcc
   - https://regex101.com              - Regex explanations
   - https://habr.com/ru/post/545150/  - More about regex
 
+
+
+# Chapter 2: System Calls and ASM
+- system calls info: `man 2 <command>`
+- file descriptors: /proc/<pname>/fd/
+- 0 (stdin), 1 (stdout), 2 (stderr) 
+- `xxd -p file.txt`
+
+
+- syscall.S
+```asm
+    .intel_syntax noprefix
+    .text
+    .global syscall
+
+syscall: // syscall(sys_num=rdi,fd=rsi,buf=rdx,count=rcx)
+    mov rax,rdi
+    mov rdi,rsi
+    mov rdx, rcx
+    // syscall
+    int 0x80 // for x32
+    ret
+```
+
+```c
+#include <sys/syscall.h>
+
+long syscall(long no, ...);
+
+ssize_t write(int fd, const void* buf, size_t count) {
+    return syscall(SYS_write, fd, buff, count);
+}
+
+void _exit(int status) {
+    syscall(SYS_exit, status);
+}
+
+void _start() {
+    static const char msg[] = "Message\n";
+    write(1, msg, sizeof(msg));
+    _exit(0);
+}
+```
+
+- `gcc -nostdlib msg,c syscall.S -g`
+- `gdbserver :<port> ./a.out`
+- `layout src`
+- `layout split`
+- `layout regs`
+- registers to save: `rbx, rbp, r12-r15`
+- `.gdbinit`
+- `set auto-load safe-path ...`
+- `void *sbrk(intptr_t increment);`
