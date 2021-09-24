@@ -77,7 +77,6 @@ whereis gcc
   - https://habr.com/ru/post/545150/  - More about regex
 
 
-
 # Chapter 2: System Calls and ASM
 - system calls info: `man 2 <command>`
 - file descriptors: /proc/<pname>/fd/
@@ -129,3 +128,49 @@ void _start() {
 - `.gdbinit`
 - `set auto-load safe-path ...`
 - `void *sbrk(intptr_t increment);`
+
+
+# Chapter 3: POSIX API
+
+- `./test 5 > file.txt`: file descriptor 5 to file.txt
+```c
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int open(const char*, int flags, ...) in fcntl.h
+// flags: O_RDONLY (1), O_WRONLY (2), O_RDWR (3), O_CREAT, O_EXCL
+// if (flags & O_RDONLY)
+
+open(argv[1], O_WRONLY | O_CREAT, 0)
+```
+- flags:  
+```
+RWX code description
+================================
+000  0   (nothing)  
+001  1   (only execution)  
+010  2   (only writing)  
+011  3   (writing and execution)  
+100  4   (only reading)  
+101  5   (reading and execution)  
+110  6   (reading and writing)  
+111  7   (all)
+```
+
+
+- access codes: owner-group-others
+- errors
+```c
+int errno;
+perror(const char* prefix);
+```
+- `ln file.txt alias.txt`: (as regular file)  
+- `ln - s file.txt alias.txt`: symbolic link  
+```c
+#include <unistd.h>
+int unlink(const char* filename);
+off_t lseek(int fd, off_t offset, int whence);
+```
+- `gcc -D_FILE_OFFSET_BITS=64` - `typedef int64_t off_t`
+- `x86_64-w64-mingw32-gcc from mingw-w64`
